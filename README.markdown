@@ -9,11 +9,10 @@ Click on 'New photo', then 'Pick by username'. After you enter a username and pr
 ## Structure
 
 There's one `flickr_photos` controller built by scaffolding.  
-Actions:
+Actions:  
 `index` - Shows the current photos in the database.  
-new - Pick a new photo.  
+`new` - Pick a new photo.  
 `table` - See a table listing of the photos database. (Added a route to this in config/routes.rb)  
-`new` - Pick a new photo to add.  
 `create` - Saves a photo to the database. Called from 'new'.  
 `pick_by_username` - Renders the flickr widget with user photos. Called from 'new'.
 
