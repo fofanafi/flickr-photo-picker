@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+	map.connect 'flickr_photos/table', :controller => 'flickr_photos',
+		:action => 'table'
   map.resources :flickr_photos
 
   # The priority is based upon order of creation: first created -> highest priority.

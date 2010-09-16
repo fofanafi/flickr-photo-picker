@@ -1,0 +1,26 @@
+<h1>Listing photos</h1>
+
+<table>
+  <tr>
+    <th>Url_sq</th>
+    <th>Photopage</th>
+    <th>Flickrid</th>
+		<th>Secret</th>
+  </tr>
+
+<% @flickr_photos.each do |photo| %>
+  <tr>
+    <td><%=h photo.url_sq %></td>
+    <td><%=h photo.photopage %></td>
+		<td><%=h photo.flickrid %></td>
+		<td><%=h photo.secret %></td>
+    <td><%= link_to 'Show', photo %></td>
+    <td><%= link_to 'Edit', edit_flickr_photo_path(photo) %></td>
+    <td><%= link_to 'Destroy', photo, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Back', flickr_photos_url %>

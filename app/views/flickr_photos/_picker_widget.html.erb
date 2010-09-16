@@ -1,0 +1,22 @@
+<div class="flickr" id="photo_picker">
+	<% form_tag({:action => 'create'}) do %>
+	<ul>
+		<% photos.each do |row| -%>
+			<li>
+			<% row.each do |p| %>
+				<% fields_for p do |p_fields| %>
+					<% if not p.nil? %>
+					<%= p_fields.radio_button :flickrid, p.flickrid , :checked => false %>
+					<%= link_to(image_tag(p.url_sq, :class => 'flickr_photo', :border => 2, :size => '75x75'), p.photopage) %>
+				<% end %>
+				<% end %>
+			<% end %>
+			</li>
+		<% end -%>
+	</ul>
+	<div class="actions">
+		<%= submit_tag 'Pick Photo' %>
+	</div>
+	<% end %>
+</div>
+

@@ -1,17 +1,17 @@
 <h1>New photo</h1>
 
-<% photolist = interesting %>
-<% form_for(@flickr_photo) do |f| %>
-	<%= f.error_messages %>
-	<% photolist.each do |p| %>
-		<div class="field">
-			<%= f.radio_button :flickrid, p.flickrid %>
-			<%= link_to(image_tag(p.url_sq, :class => 'flickr_photo', :size => '75x75'), p.photopage) %>
-		</div>
-	<% end %>
-  <div class="actions">
-    <%= f.submit 'Pick Photo' %>
-  </div>
+<!-- Pick photos by username -->
+<p id="pick_by_username"><%= link_to_function("Pick by username",
+"Element.remove('pick_by_username'); Element.show('enter_username')")%></p>
+<div id="enter_username" style="display:none;">
+<% form_remote_tag(:url => {:action => 'pick_by_username'},
+    :update => "photo_picker",
+    :html => {:id => 'username_form'}) do %>
+Username: <%= text_field_tag "username" %>
+<%= submit_tag 'Find photos' %>
 <% end %>
+</div>
+
+<%= render_flickr_widget @photos, 'picker' %>
 
 <%= link_to 'Back', flickr_photos_path %>

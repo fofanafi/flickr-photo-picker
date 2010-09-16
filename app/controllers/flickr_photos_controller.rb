@@ -1,4 +1,6 @@
 class FlickrPhotosController < ApplicationController
+	include FlickrPhotosHelper
+
   # GET /flickr_photos
   # GET /flickr_photos.xml
   def index
@@ -10,21 +12,10 @@ class FlickrPhotosController < ApplicationController
     end
   end
 
-  # GET /flickr_photos/1
-  # GET /flickr_photos/1.xml
-  def show
-    @flickr_photo = FlickrPhoto.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @flickr_photo }
-    end
-  end
-
   # GET /flickr_photos/new
   # GET /flickr_photos/new.xml
   def new
-    @flickr_photo = FlickrPhoto.new
+    @photos = interesting
 
     respond_to do |format|
       format.html # new.html.erb
@@ -32,10 +23,12 @@ class FlickrPhotosController < ApplicationController
     end
   end
 
-  # GET /flickr_photos/1/edit
-  def edit
-    @flickr_photo = FlickrPhoto.find(params[:id])
-  end
+	# Updates 'new' page via AJAX
+	def pick_by_username
+		username = params[:username]
+		photos = getUserPhotos(username)
+		render_flickr_widget(photos, 'picker')
+	end
 
   # POST /flickr_photos
   # POST /flickr_photos.xml
@@ -51,6 +44,27 @@ class FlickrPhotosController < ApplicationController
         format.xml  { render :xml => @flickr_photo.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+	# GET /flickr_photos/table
+	def table
+		@flickr_photos = FlickrPhoto.all
+	end
+
+  # GET /flickr_photos/1
+  # GET /flickr_photos/1.xml
+  def show
+    @flickr_photo = FlickrPhoto.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @flickr_photo }
+    end
+  end
+
+  # GET /flickr_photos/1/edit
+  def edit
+    @flickr_photo = FlickrPhoto.find(params[:id])
   end
 
   # PUT /flickr_photos/1
@@ -80,4 +94,29 @@ class FlickrPhotosController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+protected
+
+	def getUserPhotos(username)
+		user_id = flickr.people.findByUsername(:username => username).id
+		infolist = flickr.people.getPublicPhotos :user_id => user_id
+		photosFromInfo infolist
+	end
+
+	def interesting(per_page = 12)
+		list = flickr.interestingness.getList(:per_page => per_page, :extras => "url_sq")
+		photosFromInfo(list)
+	end
+
+	def photosFromInfo(infolist)
+		infolist.map do |info|
+			FlickrPhoto.fromInfo(info)
+		end
+	end
+	
+	def auth_api_key
+		FlickRaw.api_key = "c0e95b31a8dbfe4e84c12cdd29e1c539"
+		FlickRaw.shared_secret = "3116bfe51a557129"
+	end
+
 end

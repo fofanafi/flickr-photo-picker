@@ -1,0 +1,32 @@
+.flickr ul
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.flickr ul li 
+{
+	border-bottom: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.flickr a:hover, .flickr a:focus {
+	background-color: #FFFFFF;
+}
+
+.flickr_photo
+{
+	width: 75px;
+	height: 75px;
+	padding: 0;
+	margin: 12px 10px 14px 13px;
+	background: #fff no-repeat;
+}
+
+img.flickr_photo
+{
+	border: 2px solid;
+	vertical-align: middle;
+}
+
