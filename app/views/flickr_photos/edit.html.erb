@@ -1,0 +1,28 @@
+<h1>Editing flickr_photo</h1>
+
+<% form_for(@flickr_photo) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :flickrid %><br />
+    <%= f.text_field :flickrid %>
+  </p>
+  <p>
+    <%= f.label :secret %><br />
+    <%= f.text_field :secret %>
+  </p>
+  <p>
+    <%= f.label :url_sq %><br />
+    <%= f.text_field :url_sq %>
+  </p>
+  <p>
+    <%= f.label :photopage %><br />
+    <%= f.text_field :photopage %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @flickr_photo %> |
+<%= link_to 'Back', flickr_photos_path %>

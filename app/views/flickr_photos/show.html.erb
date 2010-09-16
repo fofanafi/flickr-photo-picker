@@ -1,0 +1,23 @@
+<p>
+  <b>Flickrid:</b>
+  <%=h @flickr_photo.flickrid %>
+</p>
+
+<p>
+  <b>Secret:</b>
+  <%=h @flickr_photo.secret %>
+</p>
+
+<p>
+  <b>Url_sq:</b>
+  <%=h @flickr_photo.url_sq %>
+</p>
+
+<p>
+  <b>Photopage:</b>
+  <%=h @flickr_photo.photopage %>
+</p>
+
+
+<%= link_to 'Edit', edit_flickr_photo_path(@flickr_photo) %> |
+<%= link_to 'Back', flickr_photos_path %>

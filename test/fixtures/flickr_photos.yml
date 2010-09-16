@@ -1,0 +1,27 @@
+# == Schema Information
+# Schema version: 20100913175202
+#
+# Table name: flickr_photos
+#
+#  id         :integer         not null, primary key
+#  flickrid   :string(255)     not null
+#  secret     :string(255)
+#  urlsq      :string(255)
+#  photopage  :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  flickrid: MyString
+  secret: MyString
+  urlsq: MyString
+  photopage: MyString
+
+two:
+  flickrid: MyString
+  secret: MyString
+  urlsq: MyString
+  photopage: MyString

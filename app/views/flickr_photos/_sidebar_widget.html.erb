@@ -1,0 +1,12 @@
+<div class="flickr">
+	<ul>
+		<% photos.each do |row| -%>
+			<li>
+			<% row.each do |p| %>
+				<%= link_to(image_tag(p.url_sq, :class => 'flickr_photo', :border => 2, :size => '75x75'), p.photopage) if not p.nil? %>
+			<% end %>
+			</li>
+		<% end -%>
+	</ul>
+</div>
+
