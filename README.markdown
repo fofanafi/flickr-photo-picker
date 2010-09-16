@@ -1,6 +1,6 @@
 # Flickr Photo Picker
 
-A rails app that allows you to pick photos from flickr. See it [here](flickr-photo-picker.heroku.com).
+A rails app that allows you to pick photos from flickr. See it [here](http://flickr-photo-picker.heroku.com).
 
 ## Using the site
 
