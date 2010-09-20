@@ -1,7 +1,7 @@
 <h1>New photo</h1>
 
 <!-- Pick photos by username -->
-<p id="pick_by_username"><%= link_to_function("Pick by username",
+<p id="pick_by_username">Displaying interesting photos.&nbsp;<%= link_to_function("Pick by username instead.",
 "Element.remove('pick_by_username'); Element.show('enter_username')")%></p>
 <div id="enter_username" style="display:none;">
 <% form_remote_tag(:url => {:action => 'pick_by_username'},

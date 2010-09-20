@@ -26,7 +26,7 @@ class FlickrPhotosController < ApplicationController
 	# Updates 'new' page via AJAX
 	def pick_by_username
 		username = params[:username]
-		photos = getUserPhotos(username)
+		photos = getUserPhotos(username, :per_page => 18)
 		render_flickr_widget(photos, 'picker')
 	end
 
@@ -97,9 +97,12 @@ class FlickrPhotosController < ApplicationController
 
 protected
 
-	def getUserPhotos(username)
+	def getUserPhotos(username, opts = {})
+		defaults = {:per_page => 12}
+		opts = defaults.merge opts
 		user_id = flickr.people.findByUsername(:username => username).id
-		infolist = flickr.people.getPublicPhotos :user_id => user_id
+		infolist = flickr.people.getPublicPhotos :user_id => user_id,
+			:per_page => opts[:per_page]
 		photosFromInfo infolist
 	end
 

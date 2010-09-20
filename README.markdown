@@ -4,7 +4,7 @@ A rails app that allows you to pick photos from flickr. See it [here](http://fli
 
 ## Using the site
 
-Click on 'New photo', then 'Pick by username'. After you enter a username and press enter, it will look as if nothing is happening (because it's an AJAX request and I need to add little 'Loading...' signs), but if you wait a little bit the page will update with user photos! Or with an error message if that user doesn't exist. I need to catch that exception.
+Click on 'New photo', then 'Pick by username'. After you enter a username and press enter, it will look as if nothing is happening (because it's an Ajax request and I need to add little 'Loading...' signs), but if you wait a little bit the page will update with user photos! Or with an error message if that user doesn't exist. I need to catch that exception.
 
 ## Structure
 
