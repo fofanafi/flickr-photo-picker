@@ -2,6 +2,8 @@ ActionController::Routing::Routes.draw do |map|
 	map.connect 'flickr_photos/table', :controller => 'flickr_photos',
 		:action => 'table'
   map.resources :flickr_photos
+	map.signin '/signin', :controller => 'sessions', :action => 'new'
+	map.signout '/signtout', :controller => 'sessions', :action => 'destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
 
