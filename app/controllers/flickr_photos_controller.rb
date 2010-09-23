@@ -26,8 +26,13 @@ class FlickrPhotosController < ApplicationController
 	# Updates 'new' page via AJAX
 	def pick_by_username
 		username = params[:username]
-		photos = getUserPhotos(username, :per_page => 18)
-		render_flickr_widget(photos, 'picker')
+		begin
+			photos = getUserPhotos(username, :per_page => 18)
+			render_flickr_widget(photos, 'picker')
+		rescue FlickRaw::FailedResponse => e
+			render :text => "<p>User " + username + " not found.</p>",
+				:layout => false
+		end
 	end
 
   # POST /flickr_photos
@@ -97,6 +102,7 @@ class FlickrPhotosController < ApplicationController
 
 protected
 
+	# throws FlickRaw::FailedResponse when user not found
 	def getUserPhotos(username, opts = {})
 		defaults = {:per_page => 12}
 		opts = defaults.merge opts
