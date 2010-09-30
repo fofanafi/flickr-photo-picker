@@ -1,4 +1,5 @@
 class FlickrPhotosController < ApplicationController
+	include FlickrHelper
 	include FlickrPhotosHelper
 
   # GET /flickr_photos
